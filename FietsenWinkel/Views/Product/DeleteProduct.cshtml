@@ -1,0 +1,37 @@
+﻿@model Models.Product
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewData["Title"] = "Delete Product";
+}
+
+<h1>Delete Product</h1>
+<p></p>
+
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 class="alert-heading">Warning!</h4>
+    <p class="mb-0">The product displayed below will be <strong>permanently deleted</strong> if you click the "Delete Product" button on this page. You can return to the product list by clicking on the "Back to product list" button.</p>
+</div>
+
+<p></p>
+
+<form asp-action="ExecuteDeleteProduct">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="PId" />
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="PName"></label>
+            <input type="text" class="form-control" asp-for="PName" placeholder=@Model.PName readonly />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="PPrice"></label>
+            <input type="text" class="form-control" asp-for="PPrice" placeholder="@Model.PPrice" readonly />
+        </div>
+    </div>
+    <input type="submit" value="Delete Product" class="btn btn-secondary" />
+    <button class="btn btn-secondary" asp-controller="Product" asp-action="Index">Back to product list</button>
+
+</form>

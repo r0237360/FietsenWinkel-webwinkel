@@ -1,0 +1,40 @@
+﻿
+@model Models.Product
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewData["Title"] = "Buy a product";
+    int quantity = 0;
+}
+
+<h1>Buy a product</h1>
+
+
+<form asp-action="BuyProduct">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="PId" />
+    <div class="form-row">
+     
+        <div class="col-md-4 mb-3">
+            <label asp-for="PName">@Html.DisplayNameFor(model => model.PName): </label>
+            <input type="text" class="form-control" asp-for="PName" placeholder="Product name" readonly />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="PPrice">@Html.DisplayNameFor(model => model.PPrice): </label>
+            <input type="text" class="form-control" asp-for="PPrice" placeholder="Price" readonly />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label for="@quantity">Order quantity: </label>
+            <input type="number" class="form-control" id="@quantity" placeholder="quantity" value="@quantity" name="quantity" />
+
+        </div>
+    </div>
+
+    <input type="submit" value="Save to shopping cart" class="btn btn-secondary" />
+    <button class="btn btn-secondary" asp-controller="Product" asp-action="Index">Back to product list</button>
+
+</form>

@@ -1,0 +1,48 @@
+﻿
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    ViewData["Title"] = "Home Page";
+
+    //string image = "/images/bikes/Fiets" + ViewData["nummer"] + ".jpg";
+
+    //string image = /images/bikes/Fiets1.jpg
+    //<img src="/images/bikes/Fiets1.jpg" />
+
+}
+
+
+<style>
+
+
+    .center {
+        position: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+
+    img {
+        width: 700px;
+    }
+
+    h1 {
+        text-align: center;
+        text-size-adjust: auto;
+    }
+</style>
+
+
+<h1>Welcome FietsenWinkel</h1>
+
+
+@*<img src="/images/bikes/Fiets1.jpg" />*@
+
+<div class="text-center">
+    <a asp-controller="Product" asp-action="Index"><img src="@ViewData["image"]" class="rounded mx-auto d-block" /></a>
+</div>
+
+
+
+

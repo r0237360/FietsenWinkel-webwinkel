@@ -1,0 +1,29 @@
+﻿@model Models.Product
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewData["Title"] = "Update Product";
+}
+
+<h1>Update Product</h1>
+
+
+<form asp-action="UpdateProduct">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="PId" />
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="PName"></label>
+            <input type="text" class="form-control" asp-for="PName" placeholder=@Model.PName required />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="PPrice"></label>
+            <input type="text" class="form-control" asp-for="PPrice" placeholder="@Model.PPrice" />
+        </div>
+    </div>
+    <input type="submit" value="Update Product" class="btn btn-secondary" />
+    <button class="btn btn-secondary" asp-controller="Product" asp-action="Index">Back to product list</button>
+
+</form>

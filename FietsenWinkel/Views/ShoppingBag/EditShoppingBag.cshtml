@@ -1,0 +1,88 @@
+﻿
+@model BLL.ViewModels.shoppingBagViewModel
+@{
+    ViewData["Title"] = "Edit Shopping Bag";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+    var shoppingBagItems2 = (IEnumerable<SelectListItem>)ViewData["ShoppingBagItems2"];
+}
+
+<h1>Edit Shopping Bag</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditShoppingBag">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="shoppingBag.SBId" />
+            <div class="form-group">
+                <label asp-for="shoppingBag.Customer.CFullName"></label>
+                <input type="text" class="form-control" asp-for="shoppingBag.Customer.CFullName" placeholder="Customer" required />
+                <span asp-validation-for="shoppingBag.Customer.CFullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="shoppingBag.SBDate"></label>
+                <input type="date" class="form-control" asp-for="shoppingBag.SBDate" placeholder="Date" />
+                <span asp-validation-for="shoppingBag.SBDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-secondary" />
+                <button class="btn btn-secondary" asp-controller="Product" asp-action="Index" asp-route-SBId="@Model.shoppingBag.SBId">Add more items via product list</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<hr />
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th hidden></th>
+            <th scope="col">Product</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.shoppingItems.OrderBy(p => p.Product.PName))
+        {
+            <tr class="table-secondary">
+                <td hidden>@item.SBId</td>
+                <td>@item.Product.PName</td>
+                <td>@item.SIQuantity</td>
+                <td>@item.Product.PPrice</td>
+                <td>@item.SISubTotal</td>
+                <td></td>
+            </tr>
+        }
+
+    <tr class="table-secondary">
+        <td></td>
+        <td>@Model.shoppingBag.SBTotalQuantity </td>
+        <td></td>
+        <td>@Model.shoppingBag.SBSubTotal</td>
+        <td></td>
+    </tr>
+
+    <tr class="table-secondary">
+        <td></td>
+        <td>Discount</td>
+        <td>@Model.shoppingBag.SBDiscountPct %</td>
+        <td>@Model.shoppingBag.SBDiscount</td>
+        <td></td>
+    </tr>
+    <tr class="table-secondary">
+        <td></td>
+        <td>Total</td>
+        <td></td>
+        <td value="right">@Model.shoppingBag.SBTotal</td>
+        <td></td>
+    </tr>
+
+
+    </tbody>
+</table>

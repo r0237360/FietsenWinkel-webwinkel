@@ -1,0 +1,27 @@
+﻿
+@model Models.Customer
+@{
+    ViewData["Title"] = "Create a new Customer";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>Create a new customer</h1>
+<form asp-action="CreateCustomer">
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="CFirstName">@Html.DisplayNameFor(model => model.CFirstName): </label>
+            <input type="text" class="form-control" asp-for="CFirstName" placeholder="First Name" required />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="CName">@Html.DisplayNameFor(model => model.CName): </label>
+            <input type="text" class="form-control" asp-for="CName" placeholder="Name" />
+        </div>
+    </div>
+
+    <input type="submit" value="Create Customer" class="btn btn-secondary" />
+    <button class="btn btn-secondary" asp-controller="Customer" asp-action="Index" formnovalidate>Back to customer list</button>
+
+
+</form>

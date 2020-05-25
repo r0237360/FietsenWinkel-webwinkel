@@ -1,0 +1,38 @@
+﻿@model List<Models.ShoppingBag>
+@{
+    ViewData["Title"] = "Shopping Bags";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>Shopping Bag</h1>
+<p></p>
+
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th hidden></th>
+            <th scope="col">Customer</th>
+            <th scope="col">Date</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var shoppingBag in Model)
+        {
+            <tr class="table-secondary">
+                <td hidden>@shoppingBag.SBId</td>
+                <td>@shoppingBag.Customer.CFirstName @shoppingBag.Customer.CName</td>
+                <td>@shoppingBag.SBDate.Day / @shoppingBag.SBDate.Month / @shoppingBag.SBDate.Year</td>
+                <td>
+                    <a class="btn btn-secondary" asp-controller="ShoppingBag" asp-action="EditShoppingbag" asp-route-SBId="@shoppingBag.SBId">Edit ShoppingBag</a>
+                    @*<a asp-controller="ShoppingBag" asp-action="Edit" asp-route-shoppingBagId="@shoppingBag.SBId">Edit</a>*@
+                    @*<a asp-controller="ShoppingBag" asp-action="Remove" asp-route-CustomerId="@shoppingBag.ShoppingBagId">Delete</a>*@
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,62 @@
+﻿@model List<Models.Product>
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewData["Title"] = "Products";
+    int nr = 1;
+
+
+}
+
+<style>
+
+    img {
+        max-width: 700px;
+        /**max-height: 350px;*/
+        /*width: 400px;
+            height: 200px;*/
+    }
+</style>
+
+
+<h1>Products</h1>
+
+
+<a class="btn btn-outline-secondary" asp-controller="Product" asp-action="CreateProduct">Create New Product</a>
+
+<p></p>
+
+<div class="card-deck">
+
+    @foreach (var item in Model.OrderBy(p => p.PId))
+    {
+        string picture = "/images/bikes/Fiets" + nr + ".jpg";
+
+        <div class="card">
+
+            <img src="@picture" alt="Image not found" onerror="this.onerror=null;this.src='/images/other/no-bike.png';" />
+
+            <div class="card-body">
+                <h1 class="card-title">@item.PName</h1>
+
+
+                <p class="card-text">Price: @item.PPrice</p>
+
+                <a class="btn btn-secondary" asp-controller="Product" asp-action="BuyProduct" asp-route-PId="@item.PId">
+                    <img src="/images/baskets/cart plus small.png" />  Buy Item
+
+                </a>
+
+            </div>
+
+            <div class="card-footer">
+                <a class="btn btn-secondary" asp-controller="Product" asp-action="UpdateProduct" asp-route-PId="@item.PId">Update Product</a>
+                <a class="btn btn-secondary" asp-controller="Product" asp-action="DeleteProduct" asp-route-PId="@item.PId">Delete Product</a>
+
+            </div>
+        </div>
+
+        nr++;
+
+    }
+
+</div>

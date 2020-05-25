@@ -1,0 +1,43 @@
+﻿
+@model List<Models.Customer>
+    @{
+    ViewData["Title"] = "Customers";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    }
+
+    <h1>Customers</h1>
+   
+    <p></p>
+    <a class="btn btn-outline-secondary" asp-controller="Customer" asp-action="CreateCustomer">Create New Customer</a>
+    <p></p>   
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">First Name</th>
+                <th scope="col">Name</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var customer in Model)
+            {
+            <tr class="table-secondary">
+                
+                <td>
+                    <img src="/images/other/user-24.png" alt="Image not found" onerror="this.onerror=null;this.src='/images/other/no-bike.png';" />
+                </td>
+                <td>@customer.CFirstName</td>
+                <td>@customer.CName</td>
+                <td>
+                    <a class="btn btn-secondary" asp-controller="Customer" asp-action="UpdateCustomer" asp-route-CId="@customer.CId">Update Customer</a>
+                    <a class="btn btn-secondary" asp-controller="Customer" asp-action="DeleteCustomer" asp-route-CId="@customer.CId">Delete Customer</a>    
+                    
+
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

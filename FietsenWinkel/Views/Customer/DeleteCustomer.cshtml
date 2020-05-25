@@ -1,0 +1,44 @@
+﻿@model Models.Customer
+
+@{
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    ViewData["Title"] = "Delete Customer";
+}
+
+<h1>Delete Customer</h1>
+<p></p>
+
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 class="alert-heading">Warning!</h4>
+    <p class="mb-0">The customer displayed below will be <strong>permanently deleted</strong> if you click the "Delete Customer" button on this page. You can return to the customer list by clicking on the "Back to customer list" button.</p>
+</div>
+
+<p></p>
+
+<div class="alert alert-dismissible alert-danger">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Do not delete customer 1, Jan Janssens. There is a harcoded link between Jan Jansens and the shopping bag!</strong>
+</div>
+
+<p></p>
+
+<form asp-action="ExecuteDeleteCustomer">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="CId" />
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="CFirstName"></label>
+            <input type="text" class="form-control" asp-for="CFirstName" placeholder=@Model.CFirstName readonly />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
+            <label asp-for="CName"></label>
+            <input type="text" class="form-control" asp-for="CName" placeholder="@Model.CName" readonly />
+        </div>
+    </div>
+    <input type="submit" value="Delete Customer" class="btn btn-secondary" />
+    <button class="btn btn-secondary" asp-controller="Customer" asp-action="Index">Back to customer list</button>
+
+</form>
